@@ -1,3 +1,3 @@
 export default function IndexPage() {
-  return <div>Hello, world!</div>;
+  return <div>Users index page</div>;
 }
