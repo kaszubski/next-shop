@@ -1,11 +1,14 @@
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
+import { Main } from '../components/Main';
 
 function AboutPage() {
   return (
     <>
       <Header />
-      <h4>About page</h4>
+      <Main>
+        <h4>About page</h4>
+      </Main>
       <Footer />
     </>
   );
