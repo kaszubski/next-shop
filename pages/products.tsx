@@ -1,5 +1,5 @@
 import { InferGetStaticPropsType } from 'next';
-import { Product } from '../components/Product';
+import { ProductListItem } from '../components/Product';
 
 export interface StoreApiResponse {
   id: number;
@@ -30,13 +30,12 @@ function ProductsPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) 
     <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {data.map((product) => (
         <li key={product.id} className="shadow-xl border-2">
-          <Product data={
+          <ProductListItem data={
         {
+          id: product.id,
           title: product.title,
           imgUrl: product.image,
           imgAlt: product.title,
-          description: product.description,
-          rating: product.rating.rate,
         }
       }
           />
