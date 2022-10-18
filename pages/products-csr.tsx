@@ -1,4 +1,4 @@
-import { InferGetStaticPropsType } from 'next';
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Product } from '../components/Product';
 
 export interface StoreApiResponse {
@@ -14,18 +14,23 @@ export interface StoreApiResponse {
   };
 }
 
-export async function getStaticProps() {
+async function getProducts() {
   const res = await fetch('https://fakestoreapi.com/products/');
   const data: StoreApiResponse[] = await res.json() as StoreApiResponse[];
-
-  return {
-    props: {
-      data,
-    },
-  };
+  return data;
 }
 
-function ProductsPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
+function ProductsCSRPage() {
+  const { data, isLoading, error } = useQuery(['products'], getProducts);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data || error) {
+    return <div>Damn bratan, something nie dziala po bozemu :(</div>;
+  }
+
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {data.map((product) => (
@@ -46,4 +51,4 @@ function ProductsPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) 
   );
 }
 
-export default ProductsPage;
+export default ProductsCSRPage;
