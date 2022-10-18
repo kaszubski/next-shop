@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { ProductDetails } from '../components/Product';
 
 const DATA = {
+  id: 1,
   title: 'title',
   imgUrl: 'https://picsum.photos/id/536/354',
   imgAlt: 'random_pic',
