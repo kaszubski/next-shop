@@ -6,7 +6,7 @@ interface IMainProps {
 
 export function Main({ children }: IMainProps) {
   return (
-    <main className="flex-grow max-w-2xl mx-auto grid p-6 gap-6 sm:grid-cols-2 bg-teal-100">
+    <main className="flex-grow mx-auto grid p-6 gap-6 bg-gray-300">
       {children}
     </main>
   );
