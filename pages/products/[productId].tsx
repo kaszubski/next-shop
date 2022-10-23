@@ -2,7 +2,7 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 import { ProductDetails } from '../../components/Product';
-import { TInferGetStaticPathsType } from '../types';
+import { TInferGetStaticPathsType } from '../../types';
 
 export interface StoreApiResponse {
   id: number;

@@ -49,12 +49,11 @@ export function Header() {
                 Products-csr
               </a>
             </Link>
-            <a
-              href="/week3-1"
-              className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700"
-            >
-              Week 3 - 1
-            </a>
+            <Link href="/week3-1">
+              <a className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700">
+                Week 3 - 1
+              </a>
+            </Link>
           </nav>
           <div className="ml-8 flex items-center">
             <div
