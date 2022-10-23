@@ -50,10 +50,10 @@ export function Header() {
               </a>
             </Link>
             <a
-              href="/contact"
+              href="/week3-1"
               className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700"
             >
-              Contact
+              Week 3 - 1
             </a>
           </nav>
           <div className="ml-8 flex items-center">
