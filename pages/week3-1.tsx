@@ -14,9 +14,11 @@ export interface StoreApiResponse {
   };
 }
 
+console.log('Tactical console log mate');
+
 async function getProducts() {
   const res = await fetch('https://naszsklep-api.vercel.app/api/products');
-  const data: StoreApiResponse[] = await res.json() as StoreApiResponse[];
+  const data: StoreApiResponse[] = (await res.json()) as StoreApiResponse[];
   return data;
 }
 
@@ -35,16 +37,15 @@ function ProductsCSRPage() {
     <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {data.map((product) => (
         <li key={product.id} className="shadow-xl border-2">
-          <ProductDetails data={
-        {
-          id: product.id,
-          title: product.title,
-          imgUrl: product.image,
-          imgAlt: product.title,
-          description: product.description,
-          rating: product.rating.rate,
-        }
-      }
+          <ProductDetails
+            data={{
+              id: product.id,
+              title: product.title,
+              imgUrl: product.image,
+              imgAlt: product.title,
+              description: product.description,
+              rating: product.rating.rate,
+            }}
           />
         </li>
       ))}
