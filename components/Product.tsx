@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
+import Head from 'next/head';
 import { Raiting } from './Raiting';
 
 interface IProductDetails {
@@ -10,6 +12,7 @@ interface IProductDetails {
   imgUrl: string,
   imgAlt: string,
   description: string,
+  longDescription: string,
   rating: number
 }
 
@@ -83,17 +86,22 @@ export function ProductDetailSwag({ data }: IProductDetailsProps) {
 export function ProductDetails({ data }: IProductDetailsProps) {
   return (
     <>
+      <Head>
+        <title>{data.title}</title>
+      </Head>
       <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
-      <Image src={data.imgUrl} alt={data.imgAlt} layout="responsive" width={16} height={9} objectFit="contain" />
-      <p className="p-4">
-        {data.description}
-      </p>
+      <Image src={data.imgUrl} alt={data.imgAlt} layout="responsive" width={4} height={3} objectFit="contain" />
+      <article className="prose lg:prose-xl">
+        <ReactMarkdown>
+          {data.longDescription}
+        </ReactMarkdown>
+      </article>
       <Raiting raiting={data.rating} />
     </>
   );
 }
 
-type TProductListItem = Pick<IProductDetails, 'id' | 'title' | 'imgUrl' | 'imgAlt' | 'description'>;
+type TProductListItem = Pick<IProductDetails, 'id' | 'title' | 'imgUrl' | 'imgAlt' | 'description' | 'longDescription'>;
 
 interface IProductListItemProps {
   data: TProductListItem

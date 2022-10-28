@@ -11,6 +11,7 @@ export interface StoreApiResponse {
   description: string;
   category: string;
   image: string;
+  longDescription: string;
   rating: {
     rate: number;
     count: number;
@@ -41,11 +42,8 @@ export async function getStaticProps({
     };
   }
 
-  const res = await fetch(
-    `https://naszsklep-api.vercel.app/api/products/${params?.productId}`
-  );
-  const data: StoreApiResponse | null =
-    (await res.json()) as StoreApiResponse | null;
+  const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${params?.productId}`);
+  const data: StoreApiResponse | null = (await res.json()) as StoreApiResponse | null;
 
   return {
     props: {
@@ -72,6 +70,7 @@ function ProductIdPage({
           imgUrl: data.image,
           imgAlt: data.title,
           description: data.description,
+          longDescription: data.longDescription,
           rating: data.rating.rate,
         }}
       />
