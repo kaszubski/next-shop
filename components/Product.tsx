@@ -93,7 +93,7 @@ export function ProductDetails({ data }: IProductDetailsProps) {
   );
 }
 
-type TProductListItem = Pick<IProductDetails, 'id' | 'title' | 'imgUrl' | 'imgAlt'>;
+type TProductListItem = Pick<IProductDetails, 'id' | 'title' | 'imgUrl' | 'imgAlt' | 'description'>;
 
 interface IProductListItemProps {
   data: TProductListItem
@@ -108,6 +108,9 @@ export function ProductListItem({ data }: IProductListItemProps) {
       <Link href={`/products/${data.id}`}>
         <a>
           <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
+          <p className="p-4">
+            {data.description}
+          </p>
         </a>
       </Link>
     </>

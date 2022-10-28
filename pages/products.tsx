@@ -15,7 +15,7 @@ export interface StoreApiResponse {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('https://fakestoreapi.com/products/');
+  const res = await fetch('https://naszsklep-api.vercel.app/api/products/');
   const data: StoreApiResponse[] = await res.json() as StoreApiResponse[];
 
   return {
@@ -36,6 +36,7 @@ function ProductsPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) 
           title: product.title,
           imgUrl: product.image,
           imgAlt: product.title,
+          description: product.description,
         }
       }
           />

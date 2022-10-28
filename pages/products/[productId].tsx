@@ -18,8 +18,8 @@ export interface StoreApiResponse {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch('https://fakestoreapi.com/products');
-  const data: StoreApiResponse[] = await res.json() as StoreApiResponse[];
+  const res = await fetch('https://naszsklep-api.vercel.app/api/products');
+  const data: StoreApiResponse[] = (await res.json()) as StoreApiResponse[];
 
   return {
     paths: data.map((product) => ({
@@ -31,9 +31,9 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }: GetStaticPropsContext<
-TInferGetStaticPathsType<typeof getStaticPaths>
->) {
+export async function getStaticProps({
+  params,
+}: GetStaticPropsContext<TInferGetStaticPathsType<typeof getStaticPaths>>) {
   if (!params?.productId) {
     return {
       props: {},
@@ -41,8 +41,11 @@ TInferGetStaticPathsType<typeof getStaticPaths>
     };
   }
 
-  const res = await fetch(`https://fakestoreapi.com/products/${params?.productId}`);
-  const data: StoreApiResponse | null = await res.json() as StoreApiResponse | null;
+  const res = await fetch(
+    `https://naszsklep-api.vercel.app/api/products/${params?.productId}`
+  );
+  const data: StoreApiResponse | null =
+    (await res.json()) as StoreApiResponse | null;
 
   return {
     props: {
@@ -51,21 +54,26 @@ TInferGetStaticPathsType<typeof getStaticPaths>
   };
 }
 
-function ProductIdPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
+function ProductIdPage({
+  data,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!data) {
     return <div>Nie bangla mate :( </div>;
   }
   return (
     <div>
-      <Link href="/products"><a>BACK</a></Link>
-      <ProductDetails data={{
-        id: data.id,
-        title: data.title,
-        imgUrl: data.image,
-        imgAlt: data.title,
-        description: data.description,
-        rating: data.rating.rate,
-      }}
+      <Link href="/products">
+        <a>BACK</a>
+      </Link>
+      <ProductDetails
+        data={{
+          id: data.id,
+          title: data.title,
+          imgUrl: data.image,
+          imgAlt: data.title,
+          description: data.description,
+          rating: data.rating.rate,
+        }}
       />
     </div>
   );
