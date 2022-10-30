@@ -6,6 +6,7 @@ const DATA = {
   title: 'Product title',
   imgUrl: 'https://picsum.photos/id/536/354',
   imgAlt: 'random_pic',
+  longDescription: 'Essa',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus vel diam in viverra. Aliquam erat volutpat. Integer euismod sapien eget ligula sodales, ac feugiat nunc dictum.',
   rating: 4.5,

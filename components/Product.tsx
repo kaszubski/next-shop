@@ -12,7 +12,7 @@ interface IProductDetails {
   imgUrl: string,
   imgAlt: string,
   description: string,
-  longDescription?: string,
+  longDescription: string,
   rating: number
 }
 
