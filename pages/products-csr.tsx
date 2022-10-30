@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { ProductDetails } from '../components/Product';
 
-export interface StoreApiResponse {
+export interface IStoreApiResponse {
   id: number;
   title: string;
   price: number;
+  longDescription: string;
   description: string;
   category: string;
   image: string;
@@ -16,7 +17,7 @@ export interface StoreApiResponse {
 
 async function getProducts() {
   const res = await fetch('https://naszsklep-api.vercel.app/api/products/');
-  const data: StoreApiResponse[] = await res.json() as StoreApiResponse[];
+  const data: IStoreApiResponse[] = await res.json() as IStoreApiResponse[];
   return data;
 }
 
@@ -41,6 +42,7 @@ function ProductsCSRPage() {
           title: product.title,
           imgUrl: product.image,
           imgAlt: product.title,
+          longDescription: product.longDescription,
           description: product.description,
           rating: product.rating.rate,
         }
