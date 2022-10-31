@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { Raiting } from './Raiting';
 
 interface IProductDetails {
@@ -86,9 +86,7 @@ export function ProductDetailSwag({ data }: IProductDetailsProps) {
 export function ProductDetails({ data }: IProductDetailsProps) {
   return (
     <>
-      <Head>
-        <title>{data.title}</title>
-      </Head>
+      <NextSeo title={data.title} description={data.description} canonical={`https://next-shop-olive.vercel.app/products/${data.id}`} />
       <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
       <Image src={data.imgUrl} alt={data.imgAlt} layout="responsive" width={4} height={3} objectFit="contain" />
       <article className="prose lg:prose-xl">
