@@ -1,4 +1,5 @@
 import { InferGetStaticPropsType } from 'next';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { ProductListItem } from '../components/Product';
 
 export interface IStoreApiResponse {
@@ -6,7 +7,7 @@ export interface IStoreApiResponse {
   title: string;
   price: number;
   description: string;
-  longDescription: string,
+  longDescription: MDXRemoteSerializeResult<Record<string, unknown>>;
   category: string;
   image: string;
   rating: {

@@ -1,17 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { ProductDetails } from '../../components/Product';
 import { TInferGetStaticPathsType } from '../../types';
+import { MarkdownResult } from '../../utils';
 
-export interface StoreApiResponse {
+export interface IStoreApiResponse {
   id: number;
   title: string;
   price: number;
   description: string;
   category: string;
   image: string;
-  longDescription: string;
+  longDescription: MarkdownResult;
   rating: {
     rate: number;
     count: number;
@@ -20,7 +22,7 @@ export interface StoreApiResponse {
 
 export async function getStaticPaths() {
   const res = await fetch('https://naszsklep-api.vercel.app/api/products');
-  const data: StoreApiResponse[] = (await res.json()) as StoreApiResponse[];
+  const data: IStoreApiResponse[] = (await res.json()) as IStoreApiResponse[];
 
   return {
     paths: data.map((product) => ({
@@ -43,11 +45,21 @@ export async function getStaticProps({
   }
 
   const res = await fetch(`https://naszsklep-api.vercel.app/api/products/${params?.productId}`);
-  const data: StoreApiResponse | null = (await res.json()) as StoreApiResponse | null;
+  const data: IStoreApiResponse | null = (await res.json()) as IStoreApiResponse | null;
+
+  if (!data) {
+    return {
+      props: {},
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      data,
+      data: {
+        ...data,
+        longDescription: await serialize(data.longDescription as unknown as string),
+      },
     },
   };
 }
