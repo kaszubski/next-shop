@@ -1,20 +1,6 @@
 import { InferGetStaticPropsType } from 'next';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { ProductListItem } from '../components/Product';
-
-export interface IStoreApiResponse {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  longDescription: MDXRemoteSerializeResult<Record<string, unknown>>;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { IStoreApiResponse } from '../types';
 
 export async function getStaticProps() {
   const res = await fetch('https://naszsklep-api.vercel.app/api/products/');

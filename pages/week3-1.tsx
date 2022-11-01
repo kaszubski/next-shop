@@ -1,21 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { ProductDetails } from '../components/Product';
+import { IStoreApiResponse } from '../types';
 
-export interface IStoreApiResponse {
-  id: number;
-  title: string;
-  price: number;
-  longDescription: string,
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
-
-async function getProducts() {
+export async function getProducts() {
   const res = await fetch('https://naszsklep-api.vercel.app/api/products');
   const data: IStoreApiResponse[] = (await res.json()) as IStoreApiResponse[];
   return data;

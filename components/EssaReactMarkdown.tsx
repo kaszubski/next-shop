@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-unstable-nested-components */
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';

@@ -1,20 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { ProductDetails } from '../components/Product';
-
-export interface IStoreApiResponse {
-  id: number;
-  title: string;
-  price: number;
-  longDescription: MDXRemoteSerializeResult<Record<string, unknown>>;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { IStoreApiResponse } from '../types';
 
 async function getProducts() {
   const res = await fetch('https://naszsklep-api.vercel.app/api/products/');
