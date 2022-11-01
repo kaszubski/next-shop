@@ -12,7 +12,7 @@ interface IProductDetails {
   imgUrl: string;
   imgAlt: string;
   description: string;
-  longDescription: MarkdownResult;
+  longDescription?: MarkdownResult;
   rating: number;
 }
 
@@ -38,7 +38,7 @@ export function ProductDetails({ data }: IProductDetailsProps) {
         objectFit="contain"
       />
       <article className="prose lg:prose-xl">
-        <MDXRemote {...data.longDescription} />
+        {data.longDescription && <MDXRemote {...data.longDescription} />}
         {/* {'[link](/products/2)'} */}
       </article>
       <Raiting raiting={data.rating} />

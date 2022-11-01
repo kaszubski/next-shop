@@ -25,7 +25,6 @@ function ProductsPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) 
           imgUrl: product.image,
           imgAlt: product.title,
           description: product.description,
-          longDescription: product.longDescription,
         }
       }
           />

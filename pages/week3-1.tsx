@@ -29,7 +29,6 @@ function ProductsCSRPage() {
               title: product.title,
               imgUrl: product.image,
               imgAlt: product.title,
-              longDescription: product.longDescription,
               description: product.description,
               rating: product.rating.rate,
             }}
