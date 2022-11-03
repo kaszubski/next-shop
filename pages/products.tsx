@@ -1,22 +1,10 @@
 import { InferGetStaticPropsType } from 'next';
 import { ProductListItem } from '../components/Product';
-
-export interface StoreApiResponse {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { IStoreApiResponse } from '../types';
 
 export async function getStaticProps() {
-  const res = await fetch('https://fakestoreapi.com/products/');
-  const data: StoreApiResponse[] = await res.json() as StoreApiResponse[];
+  const res = await fetch('https://naszsklep-api.vercel.app/api/products/');
+  const data: IStoreApiResponse[] = await res.json() as IStoreApiResponse[];
 
   return {
     props: {
@@ -36,6 +24,7 @@ function ProductsPage({ data }: InferGetStaticPropsType<typeof getStaticProps>) 
           title: product.title,
           imgUrl: product.image,
           imgAlt: product.title,
+          description: product.description,
         }
       }
           />

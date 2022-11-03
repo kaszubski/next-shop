@@ -4,9 +4,9 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: true,
   images: {
-    domains: ["fakestoreapi.com"],
-    formats: ["image/avif", "image/webp"],
-  }
-}
+    domains: ['picsum.photos', 'naszsklep-api.vercel.app'],
+    formats: ['image/avif', 'image/webp'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
