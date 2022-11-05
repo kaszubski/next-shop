@@ -5,6 +5,7 @@ import { NextSeo } from 'next-seo';
 import { MDXRemote } from 'next-mdx-remote';
 import { Raiting } from './Raiting';
 import { MarkdownResult } from '../utils';
+import { useCartState } from './Cart/CartContext';
 
 interface IProductDetails {
   id: number;
@@ -53,6 +54,7 @@ interface IProductListItemProps {
 }
 
 export function ProductListItem({ data }: IProductListItemProps) {
+  const cartState = useCartState();
   return (
     <>
       <div className="bg-white p-4">
@@ -65,12 +67,24 @@ export function ProductListItem({ data }: IProductListItemProps) {
           objectFit="contain"
         />
       </div>
-      <Link href={`/products/${data.id}`}>
-        <a>
-          <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
-          <p className="p-4">{data.description}</p>
-        </a>
-      </Link>
+      <div className="p-4">
+        <Link href={`/products/${data.id}`}>
+          <a>
+            <h2 className="p-4 text-3xl font-bold">{data.title}</h2>
+            <p className="p-4">{data.description}</p>
+          </a>
+        </Link>
+        <button
+          type="button"
+          onClick={() => cartState.addItemToCart({
+            price: 21.37,
+            title: data.title,
+          })}
+          className="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+        >
+          Add to Cart
+        </button>
+      </div>
     </>
   );
 }
