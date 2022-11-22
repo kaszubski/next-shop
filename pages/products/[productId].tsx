@@ -3,22 +3,7 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { ProductDetails } from '../../components/Product';
-import { TInferGetStaticPathsType } from '../../types';
-import { MarkdownResult } from '../../utils';
-
-export interface IStoreApiResponse {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  longDescription: MarkdownResult;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { IStoreApiResponse, TInferGetStaticPathsType } from '../../types';
 
 export async function getStaticPaths() {
   const res = await fetch('https://naszsklep-api.vercel.app/api/products');
