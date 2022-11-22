@@ -8,10 +8,11 @@ import {
 interface ICartItem {
   price: number;
   title: string;
+  count: number;
 }
 
 interface ICartState {
-  items: ICartItem[];
+  items: readonly ICartItem[];
   addItemToCart: (item: ICartItem) => void;
 }
 
@@ -30,7 +31,18 @@ export function CartStateContextProvider({
       value={{
         items: cartItems,
         addItemToCart: (item) => {
-          setCartItems((prevState) => [...prevState, item]);
+          setCartItems((prevState) => {
+            const existingItem = prevState.find(
+              (elo) => elo.title === item.title,
+            );
+            if (!existingItem) {
+              return [...prevState, item];
+            }
+            // eslint-disable-next-line @typescript-eslint/no-shadow
+            return prevState.map((existingItem) => (existingItem.title === item.title
+              ? { ...existingItem, count: existingItem.count + 1 }
+              : existingItem));
+          });
         },
       }}
     >
